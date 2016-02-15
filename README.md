@@ -1,3 +1,12 @@
+# I dont have time:
+
+run:
+```
+HUBOT_SHELLCMD_KEYWORD='bash' HUBOT_SLACK_TOKEN=xoxb-21353567475-iip03ihwJib5CImPFSh3zdlL ./bin/hubot --adapter slack
+```
+
+
+
 # rrr
 
 rrr is a chat bot built on the [Hubot][hubot] framework. It was
