@@ -1,11 +1,6 @@
 # I dont have time:
 
-run:
-```
-HUBOT_SHELLCMD_KEYWORD='bash' HUBOT_SLACK_TOKEN=xoxb-21353567475-iip03ihwJib5CImPFSh3zdlL ./bin/hubot --adapter slack
-```
-
-
+Read hubot.bat to see a sequence of commands previously executed to get the bot up and running.
 
 # rrr
 

@@ -1,32 +1,24 @@
-RUN cd hubot; npm install
-
-CMD cd hubot; bin/hubot --adapter slack
-
 from node:latest
 
 run npm install -g yo generator-hubot coffee-script
 run apt-get -q update
-run apt-get -qy install git-core   
-# run apt-get -qy install redis-server
 
-# create user for robot
-run adduser --disabled-password --gecos "" rrr
-run echo "rrr ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-ENV HOME /home/rrr
-user rrr
+ENV BOT_USER=rrr
 
-# using a preexisting robot
-git clone https://github.com/formigarafa/rrr.git /home/rrr/rrr
+run adduser --disabled-password --gecos "" ${BOT_USER}
+run echo "${BOT_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+ENV HOME /home/${BOT_USER}
+user ${BOT_USER}
 
-workdir /home/rrr/rrr
+run mkdir -p ${HOME}/bot
+add . ${HOME}/bot
+
+workdir ${HOME}/bot
 run npm install
 
-# starting the robot
-
-# service redis-server start
-
 env HUBOT_SHELLCMD_KEYWORD bash
-#env HUBOT_SLACK_TOKEN=xoxb-21353567475-iip03ihwJib5CImPFSh3zdlL 
 
-cmd bin/hubot --adapter slack
+# env HUBOT_SLACK_TOKEN=xxxxxxxxxxxxxxxx 
+
+cmd REDIS_URL=redis://${RRR_BRAIN_PORT_6379_TCP_ADDR}:${RRR_BRAIN_PORT_6379_TCP_PORT}/hubot_brain bin/hubot --adapter slack
 
