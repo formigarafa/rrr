@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pgrep -a -f 'ssh -fnNT -R ' | grep -v 'sed ' | sed 's/ssh -fnNT -R //' | sed 's|-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ||'
+echo ':end:'
+

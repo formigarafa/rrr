@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pgrep -f 'ssh -fnNT -R' | grep $1 | xargs kill -9
+echo 'connection closed :white_check_mark:'
+
