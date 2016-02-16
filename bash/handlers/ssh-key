@@ -1,4 +1,8 @@
 #!/bin/bash
-echo 'my public ssh-key is:'
+
+# ensure presence of a key
+[ -f ~/.ssh/id_rsa ] || ssh-keygen -q -f ~/.ssh/id_rsa -N ''
+
+echo 'public ssh-key is:'
 cat ~/.ssh/id_rsa.pub
 
