@@ -25,3 +25,11 @@ cd rrr
 
 # starting the robot
 HUBOT_SHELLCMD_KEYWORD='bash' HUBOT_SLACK_TOKEN=xoxb-21353567475-iip03ihwJib5CImPFSh3zdlL ./bin/hubot --adapter slack
+
+
+docker run --name rrr_redis -d redis
+
+
+
+#
+sudo docker run -l rrr_redis:rrr_brain -d -e HUBOT_SLACK_TOKEN=xxxx rrr_bot
