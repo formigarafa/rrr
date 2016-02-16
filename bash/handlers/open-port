@@ -16,8 +16,7 @@ FORWARDED_PORT=$(cut -f2 -d: <(echo $TARGET))
 SSH_HOST=$(cut -f1 -d: <(echo $DESTINATION))
 SSH_OPENED_PORT=$(cut -f2 -d: <(echo $DESTINATION))
 
-ssh -fnNT -R ${SSH_OPENED_PORT}:${FORWARDED_PORT} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${SSH_HOST}
+ssh -fnNT -R ${SSH_OPENED_PORT}:${FORWARDED_HOST}:${FORWARDED_PORT} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey ${SSH_HOST} &
 PID=$!
-STATUS=$([ $? -eq 0 ] && echo 'success' || echo 'failed')
-echo "${STATUS} opening port ${SSH_OPENED_PORT} on ${SSH_HOST} forwarding to ${TARGET} (pid: ${PID})"
+echo "opening port ${SSH_OPENED_PORT} on ${SSH_HOST} forwarding to ${TARGET} (pid: ${PID})"
 
