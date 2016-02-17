@@ -11,8 +11,8 @@
 # and forwards it to (redirect connections to it to) 172.16.7.7:22
 
 FROM_PORT=$1
-TO_PORT=$2
-ON_HOST=$3
+TO_PORT=$(echo $2 | sed 's|http://||')
+ON_HOST=$(echo $3 | sed 's|http://||')
 
 OPENED_PORT=$(cut -f2 -d: <(echo $FROM_PORT))
 
